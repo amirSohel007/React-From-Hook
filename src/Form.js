@@ -22,7 +22,7 @@ export const FromArea = () => {
         </form>
         {userDetails&& 
         <div className="user_details">
-            <h2>Hello {userDetails?.first_name} Welcome !</h2>
+            <h2>Hello {userDetails?.first_name} {userDetails?.last_name} Welcome !</h2>
             <p>{userDetails?.email}</p>
         </div>
          }
