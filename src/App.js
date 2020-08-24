@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { trackPromise } from 'react-promise-tracker';
+import {FromArea} from './Form'
 
-function App() {
+function App(props) {
+
+  const [employee, setEmployee] = useState([])
+
+  useEffect(() => {
+    trackPromise(fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(responce => responce.json())
+    .then(result => setEmployee(result)));
+  }, [])
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* {employee && employee.map((employe, index) => (
+        <p style={pereColor} key={index}>Hello {employe.title}!</p>
+      ))} */}
+
+    <FromArea/>
     </div>
   );
 }
